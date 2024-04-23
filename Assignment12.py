@@ -25,6 +25,18 @@ def require_login():
 def dashboard():
     # Fetch data from the database for students and quizzes
     return render_template('dashboard.html', students=students, quizzes=quizzes)
+def add_student():
+    if request.method == 'POST':
+        # Get form data
+        first_name = request.form.get('first_name')
+        last_name = request.form.get('last_name')
+        
+        # Validate form data
+        if not first_name or not last_name:
+            return render_template('add_student.html', error='Please enter both first name and last name.')
+        
+        return redirect(url_for('dashboard'))
 
+    return render_template('add_student.html', error=None)
 if __name__ == '__main__':
     app.run(debug=True)
