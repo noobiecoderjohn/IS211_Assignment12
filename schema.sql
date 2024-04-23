@@ -1,21 +1,21 @@
-CREATE TABLE students (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    first_name TEXT NOT NULL,
-    last_name TEXT NOT NULL
+CREATE TABLE Students (
+    id INTEGER PRIMARY KEY,
+    first_name TEXT,
+    last_name TEXT
 );
 
-CREATE TABLE quizzes (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    subject TEXT NOT NULL,
-    num_questions INTEGER NOT NULL,
-    date_given TEXT NOT NULL
+CREATE TABLE Quizzes (
+    id INTEGER PRIMARY KEY,
+    subject TEXT,
+    num_questions INTEGER,
+    quiz_date DATE
 );
 
-CREATE TABLE quiz_results (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    student_id INTEGER NOT NULL,
-    quiz_id INTEGER NOT NULL,
-    score INTEGER CHECK(score >= 0 AND score <= 100),
-    FOREIGN KEY(student_id) REFERENCES students(id),
-    FOREIGN KEY(quiz_id) REFERENCES quizzes(id)
+CREATE TABLE QuizResults (
+    id INTEGER PRIMARY KEY,
+    student_id INTEGER,
+    quiz_id INTEGER,
+    score INTEGER,
+    FOREIGN KEY (student_id) REFERENCES Students(id),
+    FOREIGN KEY (quiz_id) REFERENCES Quizzes(id)
 );
